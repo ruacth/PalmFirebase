@@ -50,7 +50,7 @@ class _AuthenState extends State<Authen> {
 
   Widget showAppName() {
     return Text(
-      'Master Flutter',
+      'Palm Flutter',
       style: TextStyle(
           fontFamily: 'Schoolbell',
           fontSize: 25.0,

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "614715816300",
+    "firebase_url": "https://palmfirebase-7d351.firebaseio.com",
+    "project_id": "palmfirebase-7d351",
+    "storage_bucket": "palmfirebase-7d351.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614715816300:android:e0ab0207119149d5",
+        "android_client_info": {
+          "package_name": "th.go.dopapalm.palmfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614715816300-eu5tppvdf66pfda32esdivoref37q0mh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "th.go.dopapalm.palmfirebase",
+            "certificate_hash": "aeed2b84e0ba326a3b8bb7373cedaf90fda9c64e"
+          }
+        },
+        {
+          "client_id": "614715816300-q78d89q9h7lt9qc2cgeo4qbt8uu7s3j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcbP4n8qxgVr9qPTffHWoexUZE3-GhJAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614715816300-q78d89q9h7lt9qc2cgeo4qbt8uu7s3j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
