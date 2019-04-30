@@ -11,7 +11,7 @@ class _AuthenState extends State<Authen> {
   Widget signUpButton() {
     return RaisedButton(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
         color: Colors.red,
         child: Text('Sign Up'),
         onPressed: () {});
@@ -20,7 +20,7 @@ class _AuthenState extends State<Authen> {
   Widget signInButton() {
     return RaisedButton(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
         color: Colors.green,
         child: Text('Sign In'),
         onPressed: () {});
