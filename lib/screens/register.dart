@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
@@ -12,6 +10,12 @@ class _RegisterState extends State<Register> {
   // Explicit
   final formKey = GlobalKey<FormState>();
   String nameString, emailString, passwordString;
+
+  // For Firebase
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  // For Snackbar
+  final snackBarKey = GlobalKey<ScaffoldState>();
 
   Widget passwordTextFormField() {
     return TextFormField(
@@ -95,14 +99,42 @@ class _RegisterState extends State<Register> {
           formKey.currentState.save();
           print(
               'name = $nameString, email = $emailString, password = $passwordString');
+          uploadValueToFirebase();
         }
       },
     );
   }
 
+  void uploadValueToFirebase() async {
+    FirebaseUser firebaseUser = await firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: emailString, password: passwordString)
+        .then((user) {
+      print('Register Success With ===>>> $user');
+    }).catchError((error) {
+      String errorString = error.message;
+      print('HAVE ERROR ===>>> $errorString');
+      showSnackBar(errorString);
+    });
+  }
+
+  void showSnackBar(String messageString) {
+    SnackBar snackBar = SnackBar(
+      duration: Duration(seconds: 10),
+      backgroundColor: Colors.red[900],
+      content: Text(messageString),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: (){},
+      ),
+    );
+    snackBarKey.currentState.showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: snackBarKey,
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           backgroundColor: Colors.orange[900],
