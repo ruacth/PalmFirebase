@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../screens/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Authen extends StatefulWidget {
   @override
@@ -19,6 +20,9 @@ class _AuthenState extends State<Authen> {
 
   // Explicit
   String emailString, passwordString;
+
+  // For Firebase
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Widget signUpButton(BuildContext context) {
     return RaisedButton.icon(
@@ -46,9 +50,20 @@ class _AuthenState extends State<Authen> {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
           print('email ===>>> $emailString, password ===>>> $passwordString');
+          checkAuthen();
         }
       },
     );
+  }
+
+  void checkAuthen() async {
+    FirebaseUser firebaseUser = await firebaseAuth.signInWithEmailAndPassword(
+        email: emailString, password: passwordString).then((objValue){
+          print('Login Success ===>>> ${objValue.toString()}');
+        }).catchError((objValue) {
+          String error = objValue.message;
+          print('Errorr ===>>> $error');
+        });
   }
 
   Widget passwordTextFormField() {
@@ -60,7 +75,8 @@ class _AuthenState extends State<Authen> {
         if (value.length <= 5) {
           return titlePasswordFalse;
         }
-      },onSaved: (String value){
+      },
+      onSaved: (String value) {
         passwordString = value;
       },
     );
