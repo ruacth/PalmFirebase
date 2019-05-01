@@ -89,7 +89,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget uploadButton() {
+  Widget uploadButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.cloud_upload),
       tooltip: 'Upload To Firebase',
@@ -99,18 +99,19 @@ class _RegisterState extends State<Register> {
           formKey.currentState.save();
           print(
               'name = $nameString, email = $emailString, password = $passwordString');
-          uploadValueToFirebase();
+          uploadValueToFirebase(context);
         }
       },
     );
   }
 
-  void uploadValueToFirebase() async {
+  void uploadValueToFirebase(BuildContext context) async {
     FirebaseUser firebaseUser = await firebaseAuth
         .createUserWithEmailAndPassword(
             email: emailString, password: passwordString)
         .then((user) {
       print('Register Success With ===>>> $user');
+      Navigator.pop(context);
     }).catchError((error) {
       String errorString = error.message;
       print('HAVE ERROR ===>>> $errorString');
@@ -139,7 +140,7 @@ class _RegisterState extends State<Register> {
         appBar: AppBar(
           backgroundColor: Colors.orange[900],
           title: Text('Register'),
-          actions: <Widget>[uploadButton()],
+          actions: <Widget>[uploadButton(context)],
         ),
         body: Form(
           key: formKey,
